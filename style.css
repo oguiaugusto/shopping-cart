@@ -60,7 +60,7 @@ body {
   text-align: center;
 }
 
-i {
+.cart__items i {
   pointer-events: none;
 }
 

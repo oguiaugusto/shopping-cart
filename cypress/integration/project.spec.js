@@ -31,7 +31,7 @@ const checkPrice = (results, indexes) => {
   let total = 0;
   indexes.forEach(index => total += results[index].price);
   cy.get(TOTAL_PRICE)
-      .should('have.text', total.toString());
+      .should('have.text', total.toFixed(2).toString());
 }
 
 describe('Shopping Cart Project', () => {
@@ -211,6 +211,10 @@ describe('Shopping Cart Project', () => {
       cy.get(CART_ITEMS)
         .children()
         .eq(1)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       checkPrice(results, [5, 36, 15]);
     });

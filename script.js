@@ -112,7 +112,6 @@ function updateTotalPrice() {
 
   document.querySelector('.total-price').innerText = totalPrice;
 }
-
 body.addEventListener('click', (e) => {
   if (e.target.classList.contains('item__add')) {
     addProductToCart(e).then(() => {
@@ -123,6 +122,12 @@ body.addEventListener('click', (e) => {
 
   if (e.target.classList.contains('item__remove')) {
     cartItemRemoveButtonListener(e);
+    updateCart();
+    updateTotalPrice();
+  }
+
+  if (e.target.classList.contains('empty-cart')) {
+    cartSection.innerHTML = '';
     updateCart();
     updateTotalPrice();
   }

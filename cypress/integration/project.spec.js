@@ -2,7 +2,7 @@ const fetchMock = require('../mocks/fetch')
 const products = require('../mocks/computerCategory')
 const PROJECT_URL = './index.html'
 
-const LOADING = '.loading';
+const LOADING = '.loader';
 const ITEM_SELECTOR = '.item';
 const ADD_CART_BUTTON = '.item__add'
 const CART_ITEMS = '.cart__items'
@@ -232,8 +232,8 @@ describe('Shopping Cart Project', () => {
     });
   });
 
-  describe('7 - Adicione um texto de `carregando` durante uma requisição à API', () => {
-    it('Adicionar um texto de "carregando" durante uma requisição à API', () => {
+  describe('7 - Adicione um elemento com a classe `loader` durante uma requisição à API', () => {
+    it('Adicionar um elemento com a classe "loader" durante uma requisição à API', () => {
       cy.visit(PROJECT_URL)
       cy.get(LOADING)
         .should('exist')

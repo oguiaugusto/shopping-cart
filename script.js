@@ -85,6 +85,9 @@ async function setProducts(query) {
     const productElement = createProductItemElement({ sku, name, image });
     itemsSection.appendChild(productElement);
   });
+
+  const loader = document.querySelector('.loader');
+  itemsSection.removeChild(loader);
 }
 
 async function addProductToCart(e) {
@@ -112,6 +115,7 @@ function updateTotalPrice() {
 
   document.querySelector('.total-price').innerText = totalPrice;
 }
+
 body.addEventListener('click', (e) => {
   if (e.target.classList.contains('item__add')) {
     addProductToCart(e).then(() => {

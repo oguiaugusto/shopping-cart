@@ -66,7 +66,7 @@ describe('Shopping Cart Project', () => {
     });
   });
   
-  describe.only('3 - Remova o item do carrinho de compras ao clicar nele', () => {
+  describe('3 - Remova o item do carrinho de compras ao clicar nele', () => {
     it('Remova o item do carrinho de compras ao clicar nele', () => {
       addToCart(29);
       addToCart(31);
@@ -116,8 +116,9 @@ describe('Shopping Cart Project', () => {
 
       cy.get(CART_ITEMS)
         .children()
-        .first()
-        .should('have.text', `SKU: ${results[first].id} | NAME: ${results[first].title} | PRICE: $${results[first].price}`)
+        .should('contain', `${results[first].title}`)
+        .and('contain', `${results[first].price}`)
+        .and('have.id', `${results[first].id}`);
        
       addToCart(last);
       cy.wait(1000);
@@ -125,7 +126,9 @@ describe('Shopping Cart Project', () => {
       cy.get(CART_ITEMS)
         .children()
         .last()
-        .should('have.text', `SKU: ${results[last].id} | NAME: ${results[last].title} | PRICE: $${results[last].price}`)
+        .should('contain', `${results[last].title}`)
+        .and('contain', `${results[last].price}`)
+        .and('have.id', `${results[last].id}`);
   
       cy.reload({
         onBeforeLoad(win) {
@@ -135,13 +138,16 @@ describe('Shopping Cart Project', () => {
 
       cy.get(CART_ITEMS)
         .children()
-        .first()
-        .should('have.text', `SKU: ${results[first].id} | NAME: ${results[first].title} | PRICE: $${results[first].price}`)
+        .should('contain', `${results[first].title}`)
+        .and('contain', `${results[first].price}`)
+        .and('have.id', `${results[first].id}`);
 
-      cy.get(CART_ITEMS)
+        cy.get(CART_ITEMS)
         .children()
         .last()
-        .should('have.text', `SKU: ${results[last].id} | NAME: ${results[last].title} | PRICE: $${results[last].price}`)
+        .should('contain', `${results[last].title}`)
+        .and('contain', `${results[last].price}`)
+        .and('have.id', `${results[last].id}`);
     });
 
     it('Deverá ser possível remover items do carrinho ao clicar sobre eles mesmo após regarregar a página', () => {
@@ -158,18 +164,30 @@ describe('Shopping Cart Project', () => {
       cy.get(CART_ITEMS)
         .children()
         .eq(1)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       countCart(2);
 
       cy.get(CART_ITEMS)
         .children()
         .eq(1)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       countCart(1);
 
       cy.get(CART_ITEMS)
         .children()
         .eq(0)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       countCart(0);
     })

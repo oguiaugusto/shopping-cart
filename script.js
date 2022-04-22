@@ -47,7 +47,8 @@ function createCartItemElement({ sku, name, price, image }) {
 
   const itemImage = document.createElement('img');
   const itemName = document.createElement('p');
-  const itemPrice = document.createElement('p');
+  const fullItemPrice = document.createElement('p');
+  const itemPrice = document.createElement('span');
   const removeButton = document.createElement('button');
   const buttonIcon = document.createElement('i');
 
@@ -56,18 +57,25 @@ function createCartItemElement({ sku, name, price, image }) {
 
   itemImage.src = image;
   itemName.innerText = name;
+
   itemPrice.innerText = price;
   itemPrice.className = 'item__price';
+  fullItemPrice.innerHTML = `<span>R$ </span>${itemPrice.outerHTML}`;
+
   buttonIcon.className = 'fa fa-solid fa-xmark';
 
   removeButton.type = 'button';
   removeButton.className = 'item__remove';
   removeButton.id = sku;
   removeButton.appendChild(buttonIcon);
+
+  imageDiv.className = 'cart__item__image';
+  infoDiv.className = 'cart__item__info';
+  buttonDiv.className = 'cart__item__button';
   
   imageDiv.appendChild(itemImage);
   infoDiv.appendChild(itemName);
-  infoDiv.appendChild(itemPrice);
+  infoDiv.appendChild(fullItemPrice);
   buttonDiv.appendChild(removeButton);
 
   li.appendChild(imageDiv);

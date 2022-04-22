@@ -17,13 +17,14 @@ function createCustomElement(element, className, innerText) {
   return e;
 }
 
-function createProductItemElement({ sku, name, image }) {
+function createProductItemElement({ sku, name, image, price }) {
   const section = document.createElement('section');
   section.className = 'item';
 
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('span', 'item__title', name));
+  section.appendChild(createCustomElement('span', 'item__price', `R$ ${price}`));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
 
   return section;
@@ -59,7 +60,7 @@ function createCartItemElement({ sku, name, price, image }) {
   itemName.innerText = name;
 
   itemPrice.innerText = price;
-  itemPrice.className = 'item__price';
+  itemPrice.className = 'item__cart__price';
   fullItemPrice.innerHTML = `<span>R$ </span>${itemPrice.outerHTML}`;
 
   buttonIcon.className = 'fa fa-solid fa-xmark';
@@ -89,9 +90,9 @@ function createCartItemElement({ sku, name, price, image }) {
 async function setProducts(query) {
   const products = await fetchProducts(query);
 
-  products.results.forEach(({ thumbnail, title: name, id: sku }) => {
+  products.results.forEach(({ thumbnail, title: name, id: sku, price }) => {
     const image = thumbnail.split('I.jpg').join('W.jpg');
-    const productElement = createProductItemElement({ sku, name, image });
+    const productElement = createProductItemElement({ sku, name, image, price });
     itemsSection.appendChild(productElement);
   });
 
@@ -124,7 +125,7 @@ function setCartItems() {
 }
 
 function updateTotalPrice() {
-  const priceNodes = Array.from(document.querySelectorAll('.item__price'));
+  const priceNodes = Array.from(document.querySelectorAll('.item__cart__price'));
   const totalPrice = priceNodes
     .reduce((acc, price) => acc + parseFloat(price.innerText), 0)
     .toFixed(2);

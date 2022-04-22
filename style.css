@@ -81,6 +81,11 @@ img {
   visibility: visible;
 }
 
+.item__price {
+  font-size: 15px;
+  padding: 0 10px 6px;
+}
+
 .item__add {
   background-color: rgb(89, 172, 101);
   color: rgb(238, 238, 238);

@@ -52,7 +52,7 @@ describe('Shopping Cart Project', () => {
     });    
   });
 
-  describe.only('2 - Adicione o produto ao carrinho de compras', () => {
+  describe('2 - Adicione o produto ao carrinho de compras', () => {
     it('Adicione o produto ao carrinho de compras',() => {
       cy.wait(1000);
       addToCart(36);
@@ -66,7 +66,7 @@ describe('Shopping Cart Project', () => {
     });
   });
   
-  describe('3 - Remova o item do carrinho de compras ao clicar nele', () => {
+  describe.only('3 - Remova o item do carrinho de compras ao clicar nele', () => {
     it('Remova o item do carrinho de compras ao clicar nele', () => {
       addToCart(29);
       addToCart(31);
@@ -75,18 +75,30 @@ describe('Shopping Cart Project', () => {
       cy.get(CART_ITEMS)
         .children()
         .eq(1)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       countCart(2);
 
       cy.get(CART_ITEMS)
         .children()
         .eq(1)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       countCart(1);
 
       cy.get(CART_ITEMS)
         .children()
         .eq(0)
+        .children()
+        .last()
+        .children()
+        .first()
         .click()
       countCart(0);
     });

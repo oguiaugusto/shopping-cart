@@ -32,8 +32,9 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
-function cartItemRemoveButtonListener(event) {
-  // coloque seu código aqui
+function cartItemRemoveButtonListener({ target: { id } }) {
+  const item = cartSection.children.namedItem(id);
+  cartSection.removeChild(item);
 }
 
 // eslint-disable-next-line max-lines-per-function
@@ -57,6 +58,7 @@ function createCartItemElement({ sku, name, price, image }) {
   itemPrice.innerText = price;
   buttonIcon.className = 'fa fa-solid fa-xmark';
   removeButton.type = 'button';
+  removeButton.id = sku;
   removeButton.addEventListener('click', cartItemRemoveButtonListener);
   removeButton.appendChild(buttonIcon);
   

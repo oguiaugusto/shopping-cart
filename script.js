@@ -1,4 +1,6 @@
+const body = document.querySelector('body');
 const itemsSection = document.querySelector('.items');
+const cartSection = document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -30,15 +32,44 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
-function cartItemClickListener(event) {
+function cartItemRemoveButtonListener(event) {
   // coloque seu código aqui
 }
 
-function createCartItemElement({ sku, name, salePrice }) {
+// eslint-disable-next-line max-lines-per-function
+function createCartItemElement({ sku, name, price, image }) {
   const li = document.createElement('li');
+  const imageDiv = document.createElement('div');
+  const infoDiv = document.createElement('div');
+  const buttonDiv = document.createElement('div');
+
+  const itemImage = document.createElement('img');
+  const itemName = document.createElement('p');
+  const itemPrice = document.createElement('p');
+  const removeButton = document.createElement('button');
+  const buttonIcon = document.createElement('i');
+
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
+  li.id = sku;
+
+  itemImage.src = image;
+  itemName.innerText = name;
+  itemPrice.innerText = price;
+  buttonIcon.className = 'fa fa-solid fa-xmark';
+  removeButton.type = 'button';
+  removeButton.addEventListener('click', cartItemRemoveButtonListener);
+  removeButton.appendChild(buttonIcon);
+  
+  imageDiv.appendChild(itemImage);
+  infoDiv.appendChild(itemName);
+  infoDiv.appendChild(itemPrice);
+  buttonDiv.appendChild(removeButton);
+
+  li.appendChild(imageDiv);
+  li.appendChild(infoDiv);
+  li.appendChild(infoDiv);
+  li.appendChild(buttonDiv);
+
   return li;
 }
 
@@ -51,6 +82,18 @@ async function setProducts(query) {
     itemsSection.appendChild(productElement);
   });
 }
+
+async function addProductToCart(e) {
+  const productId = getSkuFromProductItem(e.target.parentElement);
+  const { id: sku, title: name, price, thumbnail: image } = await fetchItem(productId);
+
+  const itemElement = createCartItemElement({ sku, name, price, image });
+  cartSection.appendChild(itemElement);
+}
+
+body.addEventListener('click', (e) => {
+  if (e.target.classList.contains('item__add')) addProductToCart(e);
+});
 
 window.onload = async () => {
   setProducts('computador');

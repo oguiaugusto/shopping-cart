@@ -52,7 +52,7 @@ describe('Shopping Cart Project', () => {
     });    
   });
 
-  describe('2 - Adicione o produto ao carrinho de compras', () => {
+  describe.only('2 - Adicione o produto ao carrinho de compras', () => {
     it('Adicione o produto ao carrinho de compras',() => {
       cy.wait(1000);
       addToCart(36);
@@ -60,8 +60,9 @@ describe('Shopping Cart Project', () => {
       console.log(results[36].id, results[36].title)
       cy.get(CART_ITEMS)
         .children()
-        .first()
-        .should('have.text', `SKU: ${results[36].id} | NAME: ${results[36].title} | PRICE: $${results[36].price}`)
+        .should('contain', `${results[36].title}`)
+        .and('contain', `${results[36].price}`)
+        .and('have.id', `${results[36].id}`)
     });
   });
   

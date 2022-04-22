@@ -65,8 +65,8 @@ img {
 
 .item__image {
   border-bottom: 1px solid rgb(216, 216, 216);
-  height: 200;
-  object-fit: cover;
+  height: 200px;
+  object-fit: contain;
 }
 
 .item__title {

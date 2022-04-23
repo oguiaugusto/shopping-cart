@@ -15,7 +15,6 @@ body {
   background-color: rgb(238, 238, 238);
   font-family: Rubik, sans-serif;
   color: rgb(32, 32, 32);
-  padding: 0 15px;
 }
 
 button {
@@ -27,6 +26,96 @@ img {
   user-select: none;
 }
 
+.header {
+  width: 100%;
+  background: linear-gradient(90deg, rgb(9, 65, 56) 80%, rgb(10, 118, 79) 20%);
+  user-select: none;
+
+  /* padding: 15px 20px; */
+}
+
+.header-content {
+  color: rgb(238, 238, 238);
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  gap: 50px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.header-content .products-header {
+  flex-basis: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+}
+
+.header-content .products-header h1 {
+  filter: drop-shadow(0.5px 0.5px 0 rgb(119, 119, 119));
+  text-shadow: 2px 2px 0 rgb(119, 119, 119);
+}
+
+.header-content .products-header .search-bar {
+  position: relative;
+  min-width: 35%;
+  width: 40%;
+  max-width: 400px;
+  margin-right: 80px;
+}
+
+.header-content .products-header .search-bar input {
+  border: 1px solid rgb(92, 92, 92);
+  box-shadow: 0 1px 4px rgba(15, 158, 70, 0.5);
+  color: rgb(92, 92, 92);
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  font-family: Rubik, sans-serif;
+  border-radius: 6px;
+}
+
+.header-content .products-header .search-bar input:focus {
+  box-shadow: 0 1px 4px rgba(50, 255, 129, 0.5);
+}
+
+.header-content .products-header .search-bar i {
+  color: rgb(92, 92, 92);
+  border-left: 1px solid rgb(224, 224, 224);
+  padding-left: 8px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.header-content .cart-header {
+  background-color: rgb(10, 118, 79);
+  flex-basis: 35%;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  font-size: 20px;
+  position: relative;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.header-content .cart-header i {
+  margin-left: 35px;
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+.header-content .header-triangle {
+  position: absolute;
+  border-top: 34px solid transparent;
+  border-bottom: 34px solid transparent;
+  border-left: 34px solid rgb(9, 65, 56);
+  left: -1px;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -34,6 +123,11 @@ img {
   width: 100%;
   max-width: 1400px;
   margin: auto;
+  padding: 0 15px;
+}
+
+.loader , .not-found {
+  margin-top: 40px;
 }
 
 .items {
@@ -58,7 +152,7 @@ img {
 }
 
 .item__sku {
-  background-color: rgb(89, 172, 101);
+  background-color: rgb(10, 118, 79);
   color: rgb(238, 238, 238);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   padding: 5px 10px;
@@ -92,7 +186,7 @@ img {
 }
 
 .item__add {
-  background-color: rgb(89, 172, 101);
+  background-color: rgb(10, 118, 79);
   color: rgb(238, 238, 238);
   border: none;
   padding: 10px;
@@ -102,11 +196,11 @@ img {
 }
 
 .item__add:hover {
-  background-color: rgb(81, 158, 93);
+  background-color: rgb(7, 100, 66);
 }
 
 .item__add:active {
-  background-color: rgb(72, 139, 82);
+  background-color: rgb(6, 87, 57);
 }
 
 .cart {
@@ -128,6 +222,7 @@ img {
 
 .cart__items .cart__item__image {
   padding: 10px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
 }
 
 .cart__items .cart__item__image img {
@@ -183,20 +278,20 @@ img {
 .green-btn {
   padding: 8px 10px;
   border-radius: 5px;
-  border: 3px solid rgb(89, 172, 101);
-  color: rgb(75, 148, 86);
+  border: 3px solid rgb(10, 118, 79);
+  color: rgb(10, 105, 70);
   font-weight: 700;
   transition-duration: 200ms;
 }
 
 .green-btn:hover {
-  background-color: rgb(89, 172, 101);
+  background-color: rgb(10, 118, 79);
   color: rgb(238, 238, 238);
 }
 
 .green-btn:active {
-  border: 3px solid rgb(76, 150, 87);
-  background-color: rgb(76, 150, 87);
+  border: 3px solid rgb(7, 88, 59);
+  background-color: rgb(7, 88, 59);
   color: rgb(228, 228, 228);
 }
 
@@ -220,6 +315,9 @@ img {
   }
 }
 
-/* @media screen and ( max-width : 530px ) {
+@media screen and ( min-width : 2280px ) {
 
-} */
+  .header {
+    background: linear-gradient(90deg, rgb(9, 65, 56) 65%, rgb(10, 118, 79) 35%);
+  }
+}

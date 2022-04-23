@@ -98,6 +98,7 @@ async function setProducts(query) {
 
   if (products.results.length === 0) {
     const p = document.createElement('p');
+    p.className = 'not-found';
     p.innerText = 'Nenhum item foi encontrado';
 
     itemsSection.appendChild(p);

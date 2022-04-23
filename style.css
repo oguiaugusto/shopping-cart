@@ -30,14 +30,17 @@ img {
 .container {
   display: flex;
   justify-content: space-around;
+  gap: 50px;
   width: 100%;
+  max-width: 1400px;
+  margin: auto;
 }
 
 .items {
   display: flex;
   flex-basis: 70%;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .item {
@@ -46,8 +49,10 @@ img {
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 200px;
-  margin: 10px;
+  width: 30%;
+  min-width: 200px;
+  max-width: 250px;
+  margin: 15px 10px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -214,3 +219,7 @@ img {
     transform: rotate(360deg);
   }
 }
+
+/* @media screen and ( max-width : 530px ) {
+
+} */
